@@ -20,17 +20,16 @@ const Navbar = () => {
                 {
                     user
                         ? <div className='flex items-center gap-3'>
-                            <Link to={'/applications'}>Applied Jobs</Link>
+                            <Link to={'/applications'}>Applied</Link>
                             <p>|</p>
-                            <p className='max-sm:hidden'>Hi, {user.firstName + " " + user.lastName}</p>
+                            <p className='max-sm:hidden'>Hello, {user.firstName + " " + user.lastName}</p>
                             <UserButton />
                         </div>
                         : <div className='flex gap-4 max-sm:text-xs'>
-                            <button onClick={e => setShowRecruiterLogin(true)} className='text-gray-600'>Recruiter Login</button>
-                            <button onClick={e => openSignIn()} className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'>Login</button>
+                            <button onClick={e => setShowRecruiterLogin(true)} className='text-gray-600'>Employer Login</button>
+                            <button onClick={e => openSignIn()} className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'>Sign In</button>
                         </div>
                 }
-
             </div>
         </div>
     )

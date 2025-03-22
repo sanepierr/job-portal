@@ -5,7 +5,6 @@ import microsoft_logo from "./microsoft_logo.svg";
 import walmart_logo from "./walmart_logo.svg";
 import accenture_logo from "./accenture_logo.png";
 import profile_img from "./profile_img.png";
-import app_main_img from "./app_main_img.png";
 import cross_icon from './cross_icon.svg';
 import location_icon from './location_icon.svg';
 import money_icon from './money_icon.svg';
@@ -45,7 +44,6 @@ export const assets = {
     microsoft_logo,
     walmart_logo,
     accenture_logo,
-    app_main_img,
     play_store,
     app_store,
     back_arrow_icon,

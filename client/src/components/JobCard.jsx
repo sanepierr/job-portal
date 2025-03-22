@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
 const JobCard = ({ job }) => {
-
   const navigate = useNavigate()
 
   return (

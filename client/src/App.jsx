@@ -18,7 +18,7 @@ const App = () => {
   const { showRecruiterLogin, companyToken } = useContext(AppContext)
 
   return (
-    <div>
+    <div className="min-h-screen bg-blue-50">
       {showRecruiterLogin && <RecruiterLogin />}
       <ToastContainer />
       <Routes>

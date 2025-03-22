@@ -2,20 +2,16 @@ import { assets } from '../assets/assets'
 
 const AppDownload = () => {
     return (
-        <div className='container px-4 2xl:px-20 mx-auto my-20'>
-            <div className='relative bg-gradient-to-r from-violet-50 to-purple-50 p-12 sm:p-24 lg:p-32 rounded-lg'>
-                <div>
-                    <h1 className='text-2xl sm:text-4xl font-bold mb-8 max-w-md'>Download Mobile App For Better Experience</h1>
-                    <div className='flex gap-4'>
-                        <a href="#" className='inline-block'>
-                            <img className='h-12' src={assets.play_store} alt="" />
-                        </a>
-                        <a href="#" className='inline-block'>
-                            <img className='h-12' src={assets.app_store} alt="" />
-                        </a>
+        <div className='bg-[#E7F4E8] relative'>
+            <div className='container mx-auto py-20 px-5'>
+                <div className='max-w-xl'>
+                    <h3 className='text-3xl font-bold mb-5'>Get Our Job Search App</h3>
+                    <p className='text-gray-500 mb-10'>Download our app for the fastest, most convenient way to find and apply for the best jobs in your area.</p>
+                    <div className='flex gap-5 items-center'>
+                        <img className='w-40 cursor-pointer hover:scale-105 transition-transform' src={assets.play_store} alt="Download from Google Play" />
+                        <img className='w-40 cursor-pointer hover:scale-105 transition-transform' src={assets.app_store} alt="Download from App Store" />
                     </div>
                 </div>
-                <img className='absolute w-80 right-0 bottom-0 mr-32 max-lg:hidden' src={assets.app_main_img} alt="" />
             </div>
         </div>
     )
