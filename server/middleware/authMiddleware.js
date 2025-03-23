@@ -1,27 +1,73 @@
-import jwt from 'jsonwebtoken'
+import { auth } from '@clerk/nextjs'
+import User from '../models/User.js'
 import Company from '../models/Company.js'
 
-// Middleware ( Protect Company Routes )
-export const protectCompany = async (req,res,next) => {
-
-    // Getting Token Froms Headers
-    const token = req.headers.token
-
-    
-    if (!token) {
-        return res.json({ success:false, message:'Not authorized, Login Again'})
-    }
-
+// Middleware for protecting routes that require user authentication
+export const protectUser = async (req, res, next) => {
     try {
-        
-        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        // Get user ID from Clerk auth
+        const { userId } = auth()
 
-        req.company = await Company.findById(decoded.id).select('-password')
+        if (!userId) {
+            return res.status(401).json({
+                success: false,
+                message: "Please login to access this resource"
+            })
+        }
 
+        // Find user in database
+        const user = await User.findOne({ clerkId: userId })
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        // Add user to request object
+        req.user = user
         next()
 
     } catch (error) {
-        res.json({success:false, message: error.message})
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
     }
+}
 
+// Middleware for protecting routes that require company authentication
+export const protectCompany = async (req, res, next) => {
+    try {
+        // Get organization ID from Clerk auth
+        const { orgId } = auth()
+
+        if (!orgId) {
+            return res.status(401).json({
+                success: false,
+                message: "Please login as a company to access this resource"
+            })
+        }
+
+        // Find company in database
+        const company = await Company.findOne({ clerkId: orgId })
+
+        if (!company) {
+            return res.status(401).json({
+                success: false,
+                message: "Company not found"
+            })
+        }
+
+        // Add company to request object
+        req.company = company
+        next()
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
